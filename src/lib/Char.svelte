@@ -7,6 +7,7 @@
 </script>
 
 <span
+style="min-width: 11px;"
 	class={twMerge(
 		"font-mono text-xl transition-colors duration-150 ease-in-out",
 		status === "initial" && "text-gray-400",

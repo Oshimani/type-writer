@@ -42,10 +42,19 @@
 		template = template
 	}
 
-	function initializeChallengeString(inputString: string) {
-		return Array.from(inputString).map(
+	function initializeChallengeString(inputString: string, randomize = true) {
+		if (randomize) {
+			const wordsArray = inputString.split(" ")
+			wordsArray.sort((a, b) => Math.random() - 0.5)
+
+			inputString = wordsArray.join(" ")
+		}
+
+		const arr = Array.from(inputString).map(
 			(char) => ({ char, status: "initial" } as { char: string; status: CharStatus })
 		)
+		arr[0].status = "current"
+		return arr
 	}
 
 	function reset() {
@@ -61,13 +70,20 @@
 	window.addEventListener("keydown", onKeyDown)
 </script>
 
-<div class="mt-8">
-	{#each template as { char, status }, i}
-		<Char {char} {status} />
-	{/each}
+<div class="mt-10 relative min-h-full">
+	<div class="absolute left-1/2 top-0">
+		<div
+			style={`transform: translateX(-${11 * currentIndex + 1}px)`}
+			class="flex flex-row transition-transform duration-150 ease-in-out"
+		>
+			{#each template as { char, status }, i}
+				<Char {char} {status} />
+			{/each}
+		</div>
+	</div>
 </div>
 
-<div>
+<div class="mt-10 text-center">
 	<PrimaryButton onClick={handleClickReset} label="Reset" />
 </div>
 
