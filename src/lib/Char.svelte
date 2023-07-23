@@ -12,6 +12,6 @@
 		status === "initial" && "text-gray-400",
 		status === "correct" && "text-orange-500",
 		status === "incorrect" && "text-gray-200 bg-red-600",
-		status === "current" && "text-gray-100 bg-gray-600 scale-150"
+		status === "current" && "text-gray-100 bg-gray-600"
 	)}>{char}</span
 >
