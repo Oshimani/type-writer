@@ -13,7 +13,8 @@
 		;(component = Game),
 			(props = {
 				challengeString: challenge.challengeString,
-				gameOver: showScore
+				gameOver: showScore,
+				time: 60
 			})
 	}
 	function showScore(results: Results) {
@@ -34,7 +35,7 @@
 	<svelte:component this={component} {...props} />
 </main>
 
+<!-- test -->
+
 <style>
 </style>
-
-<!-- test -->
