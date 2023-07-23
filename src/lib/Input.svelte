@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { CharStatus } from "../models/char-status"
 	import Char from "./Char.svelte"
+	import PrimaryButton from "./PrimaryButton.svelte"
 
-	let template = Array.from("Hello World, this is my first typing challenge sentence.").map(
-		(char) => ({ char, status: "initial" } as { char: string; status: CharStatus })
-	)
+	export let challengeString: string = "Hello World!"
+
+	let template = initializeChallengeString(challengeString)
 	let currentIndex = 0
 
 	function isModKey(key: string) {
@@ -41,6 +42,21 @@
 		template = template
 	}
 
+	function initializeChallengeString(inputString: string) {
+		return Array.from(inputString).map(
+			(char) => ({ char, status: "initial" } as { char: string; status: CharStatus })
+		)
+	}
+
+	function reset() {
+		currentIndex = 0
+		template = initializeChallengeString(challengeString)
+	}
+
+	function handleClickReset() {
+		reset()
+	}
+
 	window.removeEventListener("keydown", onKeyDown)
 	window.addEventListener("keydown", onKeyDown)
 </script>
@@ -49,6 +65,10 @@
 	{#each template as { char, status }, i}
 		<Char {char} {status} />
 	{/each}
+</div>
+
+<div>
+	<PrimaryButton onClick={handleClickReset} label="Reset" />
 </div>
 
 <style></style>
