@@ -55,4 +55,4 @@ jobs:
       uses: actions/deploy-pages@v2.0.3
       with:
         # GitHub token
-        token: ${{ github.token }}
+        token: ${{ secrets.GITHUB_TOKEN }}
