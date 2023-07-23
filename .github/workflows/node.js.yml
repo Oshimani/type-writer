@@ -50,7 +50,10 @@ jobs:
       pages: write
       id-token: write
     
-    steps:     
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2.1.1
+    
     - name: Deploy GitHub Pages site
       uses: actions/deploy-pages@v2.0.3
       with:
