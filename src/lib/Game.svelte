@@ -1,15 +1,17 @@
 <script lang="ts">
 	import type { CharStatus } from "../models/char-status"
+	import type { Results } from "../models/results"
 	import Char from "./Char.svelte"
 	import PrimaryButton from "./PrimaryButton.svelte"
 	import Timer from "./Timer.svelte"
 
 	export let challengeString: string = "Hello World!"
-	export let gameOver: () => void
+	export let gameOver: (results:Results) => void
 
 	let template = initializeChallengeString(challengeString)
 
 	let currentIndex = 0
+	let numberOfErrors = 0
 
 	$: gameRunning = currentIndex > 0
 
@@ -39,6 +41,7 @@
 			}
 		} else {
 			template[currentIndex].status = "incorrect"
+			numberOfErrors++
 		}
 		if (currentIndex < template.length - 1) {
 			template[currentIndex + 1].status = "current"
@@ -68,6 +71,7 @@
 
 	function reset() {
 		currentIndex = 0
+		numberOfErrors = 0
 		template = initializeChallengeString(challengeString)
 	}
 
@@ -77,7 +81,11 @@
 
 	function handleTimeUp() {
 		console.log("Time up!")
-		gameOver()
+		gameOver({
+			numberOfErrors,
+			numberOfUncorrectedErrors: template.filter(({ status }) => status === "incorrect").length,
+			numberOfDistinctCorrectChars: template.filter(({ status }) => status === "correct").length
+		})
 	}
 
 	window.removeEventListener("keydown", onKeyDown)

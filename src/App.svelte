@@ -2,6 +2,7 @@
 	import { challenges } from "./assets/challenges"
 	import Game from "./lib/Game.svelte"
 	import Score from "./lib/Score.svelte"
+	import type { Results } from "./models/results"
 
 	let challenge = challenges[Math.floor(Math.random() * challenges.length)]
 
@@ -15,10 +16,11 @@
 				gameOver: showScore
 			})
 	}
-	function showScore() {
+	function showScore(results: Results) {
 		;(component = Score),
 			(props = {
-				startNewGame: showGame
+				startNewGame: showGame,
+				results
 			})
 	}
 
