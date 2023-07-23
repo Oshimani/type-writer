@@ -44,7 +44,6 @@ jobs:
     name: Deploy
     needs: build
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
     
     permissions:
       pages: write
@@ -53,6 +52,9 @@ jobs:
     steps:
     - name: Download artifact
       uses: actions/download-artifact@v2.1.1
+    
+    - name: List dir
+      run: ls -R
     
     - name: Deploy GitHub Pages site
       uses: actions/deploy-pages@v2.0.3
