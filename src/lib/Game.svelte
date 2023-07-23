@@ -5,8 +5,10 @@
 	import Timer from "./Timer.svelte"
 
 	export let challengeString: string = "Hello World!"
+	export let gameOver: () => void
 
 	let template = initializeChallengeString(challengeString)
+
 	let currentIndex = 0
 
 	$: gameRunning = currentIndex > 0
@@ -73,21 +75,17 @@
 		reset()
 	}
 
-  function handleTimeUp() {
-    console.log("Time up!")
-    gameOver()
-  }
-
-  function gameOver(){
-
-  }
+	function handleTimeUp() {
+		console.log("Time up!")
+		gameOver()
+	}
 
 	window.removeEventListener("keydown", onKeyDown)
 	window.addEventListener("keydown", onKeyDown)
 </script>
 
-<div class="flex flex-col gap-10 h-full my-10 w-full">
-  <!-- SCROLLING TEXT CONTAINER -->
+<div class="flex flex-col gap-10 h-full w-full my-10">
+	<!-- SCROLLING TEXT CONTAINER -->
 	<div class="relative flex-grow">
 		<span class="text-zinc-900 select-none">
 			I am inivisible to fix the height of this element :D
@@ -115,7 +113,7 @@
 	</div>
 
 	<!-- TIMER -->
-	<Timer running={gameRunning} time={15} onTimeUp={handleTimeUp} />
+	<Timer running={gameRunning} time={3} onTimeUp={handleTimeUp} />
 
 	<!-- BUTTONS -->
 	<PrimaryButton onClick={handleClickReset} label="Reset" />
