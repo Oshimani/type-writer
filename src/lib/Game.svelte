@@ -12,6 +12,12 @@
 
 	let template = initializeChallengeString(challengeString)
 
+	let avgWordLength =
+		challengeString
+			.split(" ")
+			.map((word) => word.length)
+			.reduce((a, b) => a + b, 0) / challengeString.split(" ").length
+
 	let currentIndex = 0
 	let numberOfErrors = 0
 
@@ -84,6 +90,10 @@
 	function handleTimeUp() {
 		console.log("Time up!")
 		gameOver({
+			challengeInfo: {
+				avgWordLength,
+				time
+			},
 			numberOfErrors,
 			numberOfUncorrectedErrors: template.filter(({ status }) => status === "incorrect").length,
 			numberOfDistinctCorrectChars: template.filter(({ status }) => status === "correct").length

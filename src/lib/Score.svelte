@@ -5,6 +5,11 @@
 
 	export let startNewGame: () => void
 	export let results: Results
+
+	$: wpm =
+		results.numberOfDistinctCorrectChars /
+		results.challengeInfo.avgWordLength /
+		(results.challengeInfo.time / 60)
 </script>
 
 <div
@@ -12,6 +17,9 @@
 	class="h-full text-center flex flex-col justify-center gap-4"
 >
 	<h1 class="text-4xl">Game Over!</h1>
+	<h2 class="text-2xl">
+		Words per minute: <span class="text-green-500 font-bold">{Math.round(wpm)}</span>
+	</h2>
 	<p>
 		Number of correct characters: <span class="text-green-500 font-bold"
 			>{results.numberOfDistinctCorrectChars}</span
