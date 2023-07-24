@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { challenges } from "./assets/challenges"
 	import Game from "./lib/Game.svelte"
+	import GitHub from "./lib/GitHub.svelte"
 	import Score from "./lib/Score.svelte"
 	import type { Results } from "./models/results"
 
@@ -35,7 +36,7 @@
 	<svelte:component this={component} {...props} />
 </main>
 
-<!-- test -->
+<GitHub />
 
 <style>
 </style>
