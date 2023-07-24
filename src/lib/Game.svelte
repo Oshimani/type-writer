@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { twMerge } from "tailwind-merge"
 	import type { CharStatus } from "../models/char-status"
 	import type { Results } from "../models/results"
 	import Char from "./Char.svelte"
@@ -6,8 +7,8 @@
 	import Timer from "./Timer.svelte"
 
 	export let challengeString: string = "Hello World!"
-  export let time: number = 60
-	export let gameOver: (results:Results) => void
+	export let time: number = 60
+	export let gameOver: (results: Results) => void
 
 	let template = initializeChallengeString(challengeString)
 
@@ -93,13 +94,9 @@
 	window.addEventListener("keydown", onKeyDown)
 </script>
 
-<div class="flex flex-col gap-10 h-full w-full my-10">
+<div class="flex flex-col gap-16 h-full w-full my-10 overflow-x-hidden">
 	<!-- SCROLLING TEXT CONTAINER -->
 	<div class="relative flex-grow">
-		<span class="text-zinc-900 select-none">
-			I am inivisible to fix the height of this element :D
-		</span>
-
 		<!-- SCROLLING TEXT -->
 		<div class="absolute left-1/2 top-1/2">
 			<div
@@ -114,11 +111,27 @@
 
 		<!-- FADE MASKS -->
 		<!-- RIGHT -->
-		<div class="absolute right-0 top-1/2 bg-gradient-to-r from-transparent to-zinc-900 w-1/2 h-8" />
-		<div class="absolute h-8 right-0 top-1/2 bg-zinc-900 full-mask right" />
+		<div
+			class={twMerge(
+				"absolute right-0 top-1/2 bg-gradient-to-r from-transparent   w-1/2 h-8",
+				"to-white",
+				"dark:to-zinc-900"
+			)}
+		/>
+		<div
+			class={twMerge("absolute h-8 right-0 top-1/2full-mask right", "bg-white", "dark:bg-zinc-900")}
+		/>
 		<!-- LEFT -->
-		<div class="absolute left-0 top-1/2 bg-gradient-to-l from-transparent to-zinc-900 w-1/2 h-8" />
-		<div class="absolute left-0 top-1/2 bg-zinc-900 h-8 full-mask left" />
+		<div
+			class={twMerge(
+				"absolute left-0 top-1/2 bg-gradient-to-l from-transparen w-1/2 h-8",
+				"to-white",
+				"dark:to-zinc-900"
+			)}
+		/>
+		<div
+			class={twMerge("absolute left-0 top-1/2  h-8 full-mask left", "bg-white", "dark:bg-zinc-900")}
+		/>
 	</div>
 
 	<!-- TIMER -->

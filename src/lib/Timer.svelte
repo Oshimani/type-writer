@@ -35,7 +35,7 @@
 </script>
 
 <div class="relative">
-	<span class="text-zinc-900 select-none">
+	<span class="dark:text-zinc-900 text-white select-none">
 		I am inivisible to fix the height of this element :D
 	</span>
 	<div class="absolute left-1/2 top-0">
@@ -60,14 +60,34 @@
 
 	<!-- FADE MASKS -->
 	<div
-		class="absolute right-1/3 -bottom-8 bg-gradient-to-r from-transparent to-zinc-900 w-1/6 h-20"
+		class={twMerge(
+			"absolute right-1/3 -bottom-8 bg-gradient-to-r from-transparent w-1/6 h-20",
+			"to-white",
+			"dark:to-zinc-900"
+		)}
 	/>
-	<div class="absolute h-20 right-1/3 -bottom-8 bg-zinc-900 full-mask right" />
+	<div
+		class={twMerge(
+			"absolute h-20 right-1/3 -bottom-8 full-mask right",
+			"bg-white",
+			"dark:bg-zinc-900"
+		)}
+	/>
 	<!-- LEFT -->
 	<div
-		class="absolute left-1/3 -bottom-8 bg-gradient-to-l from-transparent to-zinc-900 w-1/6 h-20"
+		class={twMerge(
+			"absolute left-1/3 -bottom-8 bg-gradient-to-l from-transparent w-1/6 h-20",
+			"to-white",
+			"dark:to-zinc-900"
+		)}
 	/>
-	<div class="absolute left-1/3 bg-zinc-900 -bottom-8 h-20 full-mask left" />
+	<div
+		class={twMerge(
+			"absolute left-1/3 -bottom-8 h-20 full-mask left",
+			"bg-white",
+			"dark:bg-zinc-900"
+		)}
+	/>
 </div>
 
 <style>

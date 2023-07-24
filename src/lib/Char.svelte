@@ -10,9 +10,9 @@
 	style="min-width: 11px;"
 	class={twMerge(
 		"font-mono text-xl transition-colors duration-150 ease-in-out",
-		status === "initial" && "text-gray-400",
-		status === "correct" && "text-orange-500",
+		status === "initial" && "dark:text-gray-400 text-gray-600",
+		status === "correct" && "dark:text-orange-500 text-orange-600",
 		status === "incorrect" && "text-gray-200 bg-red-600",
-		status === "current" && "text-gray-100 bg-gray-600"
+		status === "current" && "dark:text-gray-100 text-gray-900 dark:bg-gray-600 bg-gray-300"
 	)}>{char}</span
 >
