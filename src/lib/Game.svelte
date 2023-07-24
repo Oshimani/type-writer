@@ -7,7 +7,7 @@
 	import Timer from "./Timer.svelte"
 
 	export let challengeString: string = "Hello World!"
-	export let time: number = 60
+	export let time: number = 30
 	export let gameOver: (results: Results) => void
 
 	let template = initializeChallengeString(challengeString)
@@ -88,7 +88,6 @@
 	}
 
 	function handleTimeUp() {
-		console.log("Time up!")
 		gameOver({
 			challengeInfo: {
 				avgWordLength,
@@ -148,7 +147,7 @@
 	<Timer running={gameRunning} {time} onTimeUp={handleTimeUp} />
 
 	<!-- BUTTONS -->
-	<PrimaryButton onClick={handleClickReset} label="Reset" />
+	<PrimaryButton onClick={handleClickReset}>Reset</PrimaryButton>
 </div>
 
 <style>

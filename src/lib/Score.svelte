@@ -33,5 +33,5 @@
 	<p>
 		Number of incorrect inputs: <span class="text-red-500 font-bold">{results.numberOfErrors}</span>
 	</p>
-	<PrimaryButton onClick={startNewGame} label="Play Again" />
+	<PrimaryButton onClick={startNewGame}>Play Again</PrimaryButton>
 </div>

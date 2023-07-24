@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { twMerge } from "tailwind-merge"
 
-	export let time: number = 60
+	export let time: number
 	export let running: boolean = false
 	export let onTimeUp: () => void
 
